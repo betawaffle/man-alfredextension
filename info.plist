@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>action</key>
+	<false/>
+	<key>category</key>
+	<string>SCRIPTS</string>
+	<key>command</key>
+	<string>CACHE_DIR="$HOME/Library/Caches/UnixManual"
+
+mkdir -p "$CACHE_DIR"
+cd "$CACHE_DIR"
+if [[ ! -e "{query}.pdf" ]]; then
+  man -t "{query}" | pstopdf -i -o "{query}.pdf"
+  SetFile -a E "{query}.pdf"
+fi
+open -b com.apple.Preview "{query}.pdf"
+
+# MANPAGE=`echo '{query}' | tr '[a-z]' '[A-Z]'`
+# SECTION=`cat "ps" | grep -Eom1 "\($MANPAGE ?\\\([0-9]\\\)" | sed -Ee 's/\('$MANPAGE' ?\\\(([0-9])\\\)/(\1)/'`</string>
+	<key>escapequery</key>
+	<false/>
+	<key>escapequerybackquotes</key>
+	<true/>
+	<key>escapequeryquotes</key>
+	<true/>
+	<key>growloutput</key>
+	<false/>
+	<key>growloutputsticky</key>
+	<false/>
+	<key>keyword</key>
+	<string>man</string>
+	<key>logging</key>
+	<true/>
+	<key>silent</key>
+	<true/>
+	<key>subtitle</key>
+	<string>Show unix manual entry in Preview</string>
+	<key>title</key>
+	<string>Manual Page for '{query}'</string>
+</dict>
+</plist>
